@@ -1,4 +1,5 @@
 ClassPortal::Application.routes.draw do
+  root 'static_pages#home'
   get "static_pages/home"
   get "users/new"
   get 'signup'  => 'users#new'
