@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
+    @user.privilege = "student"
     if @user.save
       flash[:success] = "Welcome to the Class Portal!"
       redirect_to @user

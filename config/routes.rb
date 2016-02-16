@@ -1,4 +1,6 @@
 ClassPortal::Application.routes.draw do
+  get 'sessions/new'
+
   root 'static_pages#home'
   get "static_pages/home"
   get "users/new"
