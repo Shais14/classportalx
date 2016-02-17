@@ -5,8 +5,14 @@ ClassPortal::Application.routes.draw do
 
   root 'static_pages#home'
   get "static_pages/home"
+  get "static_pages/admin"
+  get "static_pages/instructor"
+  get "static_pages/student"
+  get "users/newInstructor"
   get "users/new"
   get "users/edit"
+  get 'addInst' =>'users#newInstructor'
+  post 'createInstructor' =>'users#createInstructor'
   get 'signup'  => 'users#new'
   get 'edit' => 'users#edit'
   get    'login'   => 'sessions#new'
