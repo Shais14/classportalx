@@ -14,6 +14,11 @@ class StudentsController < UsersController
   end
   
   private 
+  
+  def view
+    @student = Student.all
+    render 'view'
+  end
 
     def user_params
       params.require(:student).permit(:name, :email, :password,
