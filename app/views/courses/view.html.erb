@@ -25,8 +25,9 @@
         <td><%= course.start_date %></td>
         <td><%= course.end_date %></td>
         <td><%= course.status %></td>
-        <td><%= link_to('Edit', controller: 'courses', action:'update', id: @course.ids) %> 
-        <td><%= link_to('Delete', controller: 'courses', action:'destroy', id: @course.ids) %> 
+        <td><%= link_to('Edit',  controller: 'courses', action:'edit', id: @course.ids)  %> </td>
+        <td><%= link_to "delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
+        
       </tr>
     </tbody>
     <% end %>

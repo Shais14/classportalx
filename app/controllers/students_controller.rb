@@ -19,6 +19,17 @@ class StudentsController < UsersController
     render 'view'
   end
   
+  # DELETE /courses/1
+  # DELETE /courses/1.json
+
+   def destroy
+    @student.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { head :no_content }
+    end
+  end
+  
   private
 
     def user_params
