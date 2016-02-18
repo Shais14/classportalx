@@ -1,4 +1,5 @@
 ClassPortal::Application.routes.draw do
+  resources :grades
   resources :admins
   resources :courses
 #  resources :application
