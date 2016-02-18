@@ -13,6 +13,20 @@ class InstructorsController < UsersController
       end
     end 
     
+    def edit
+      @instructor = Instructor.find(params[:id])
+    end
+    
+    def update
+      @instructor = Instructor.find(params[:id])
+      if @instructor.update_attributes(user_params)
+        flash[:success] = "Edited Instructor!"
+        redirect_to @instructor
+      else
+        render 'edit'
+      end
+    end
+    
     private
 
     def user_params

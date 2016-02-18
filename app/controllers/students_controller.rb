@@ -13,7 +13,7 @@ class StudentsController < UsersController
     end
   end
   
-  private
+  private 
 
     def user_params
       params.require(:student).permit(:name, :email, :password,
