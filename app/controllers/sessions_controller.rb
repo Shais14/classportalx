@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      if user.privilege == "admin" || user.privilege == "superadmin"
+      if user.type == "Admin" || user.type == "SuperAdmin"
         redirect_to static_pages_admin_url
-      elsif user.privilege == "instructor"
+      elsif user.type == "Instructor"
         redirect_to static_pages_instructor_url
-      elsif user.privilege == "student"
+      elsif user.type == "Student"
         redirect_to static_pages_student_url
       else
         redirect_to static_pages_home_url

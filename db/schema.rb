@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160216213856) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
-    t.string   "privilege"
+    t.string   "type"
     t.string   "remember_digest"
   end
 

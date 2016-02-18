@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(user_params)
-    @user.privilege = "student"
     if @user.save
       flash[:success] = "Welcome to the Class Portal!"
       redirect_to @user
@@ -36,24 +35,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)
     end
-    
-  public
-    
-    def newInstructor
-      @instructor = User.new
-    end
-    
-    def createInstructor
-      @instructor = User.new(user_params)
-      @instructor.privilege = "instructor"
-      if @instructor.save
-        flash[:success] = "Instructor successfully added"
-        redirect_to static_pages_admin_url
-      else
-        render 'newInstructor'
-      end
-    end
-    
-    
-    
 end

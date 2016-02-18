@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
+  
+  #Define scopes for subclasses
+  scope :students, -> { where(type: 'Student') }
+	scope :instructors, -> { where(type: 'Instructor') }
+	scope :admins, -> { where(type: 'Admin') }
+	scope :superadmins, -> { where(type: 'SuperAdmin') }
+	
   # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -28,4 +35,10 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+  
+    # We will need a way to know which animals
+    # will subclass the User model
+    def self.types
+      %w(Admin SuperAdmin Instructor Student)
+    end
 end

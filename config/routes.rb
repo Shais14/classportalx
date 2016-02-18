@@ -10,16 +10,21 @@ ClassPortal::Application.routes.draw do
   get "static_pages/student"
   get "users/newInstructor"
   get "users/new"
+  get "students/new"
   get "users/edit"
   get 'addInst' =>'users#newInstructor'
   post 'createInstructor' =>'users#createInstructor'
-  get 'signup'  => 'users#new'
+  get 'signup'  => 'students#new'
   get 'edit' => 'users#edit'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
 
   resources :users
+  resources :students
+  resources :instructors
+  resources :admins
+  resources :super_admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
