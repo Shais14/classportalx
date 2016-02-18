@@ -1,0 +1,11 @@
+<% provide(:title, 'All admins') %>
+<h1>All admins</h1>
+
+<ul class="admins">
+  <% @admins.each do |admin| %>
+    <li>
+      <%= link_to admin.name, admin %>
+      <%= admin.email %>
+    </li>
+  <% end %>
+</ul>

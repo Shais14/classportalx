@@ -12,11 +12,11 @@ ClassPortal::Application.routes.draw do
   get "static_pages/admin"
   get "static_pages/instructor"
   get "static_pages/student"
-  get "users/newInstructor"
-  get "users/new"
+  #get "users/new"
   get "students/new"
-  get "users/edit"
-  
+  #get "users/edit"
+  get "admins/new"
+  get "super_admins/new"
   get "courses/new"
   get "courses/view"
   get 'viewCourse' => 'courses#view'
@@ -29,6 +29,7 @@ ClassPortal::Application.routes.draw do
   
   get 'addInst' =>'users#newInstructor'
   post 'createInstructor' =>'users#createInstructor'
+  get 'editInst' => 'instructors#edit'
   get 'signup'  => 'students#new'
   get 'edit' => 'users#edit'
   get    'login'   => 'sessions#new'

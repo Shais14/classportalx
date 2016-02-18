@@ -13,7 +13,7 @@
       <tr>
         <td><%= student.name %></td>
         <td><%= student.email %></td>
-        <td><%= link_to('Delete') %> 
+        <td><%= link_to('Delete', controller: 'student', action:'destroy', id: @student.ids) %> 
       </tr>
     </tbody>
     <% end %>
@@ -22,5 +22,3 @@
 </div>
 
 
-
-<!--I've just made the link to destroy.. still have to figure out how to actually destory! -->

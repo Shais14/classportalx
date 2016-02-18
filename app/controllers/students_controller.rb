@@ -19,6 +19,14 @@ class StudentsController < UsersController
     @student = Student.all
     render 'view'
   end
+  
+  def destroy
+    @source.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { head :no_content }
+    end
+  end
 
     def user_params
       params.require(:student).permit(:name, :email, :password,

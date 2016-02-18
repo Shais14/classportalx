@@ -1,5 +1,9 @@
 class AdminsController < UsersController
-   def new
+  def index
+    @admins = User.admins + User.superadmins
+  end
+    
+  def new
     @admin = Admin.new
   end
 
@@ -16,7 +20,7 @@ class AdminsController < UsersController
   private 
 
     def user_params
-      params.require(:student).permit(:name, :email, :password,
+      params.require(:admin).permit(:name, :email, :password,
                                    :password_confirmation)
     end 
 end
