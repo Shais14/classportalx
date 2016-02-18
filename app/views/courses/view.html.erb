@@ -1,0 +1,39 @@
+   
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course Number</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Instructor</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    
+    <% @course.each do |course|%>
+    <tbody>
+      <tr>
+        <td><%= course.number %></td>
+        <td><%= course.title %></td>
+        <td><%= course.description %></td>
+        <td><%= course.instructor %></td>
+        <td><%= course.start_date %></td>
+        <td><%= course.end_date %></td>
+        <td><%= course.status %></td>
+        <td><%= link_to('Edit', controller: 'courses', action:'update', id: @course.ids) %> 
+        <td><%= link_to('Delete', controller: 'courses', action:'destroy', id: @course.ids) %> 
+      </tr>
+    </tbody>
+    <% end %>
+    
+  </table>
+</div>
+
+
+
+<!--I've just made the link to destroy.. still have to figure out how to actually destory! -->

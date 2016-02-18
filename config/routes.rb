@@ -1,4 +1,5 @@
 ClassPortal::Application.routes.draw do
+  resources :admins
   resources :courses
 #  resources :application
 #  resources :users
@@ -17,7 +18,14 @@ ClassPortal::Application.routes.draw do
   get "users/edit"
   
   get "courses/new"
-  get 'addCourse' => 'courses#new' 
+  get "courses/view"
+  get 'viewCourse' => 'courses#view'
+  
+
+ 
+  get "students/view"
+  get 'viewStudent' => 'students#view' 
+ 
   
   get 'addInst' =>'users#newInstructor'
   post 'createInstructor' =>'users#createInstructor'
@@ -30,7 +38,6 @@ ClassPortal::Application.routes.draw do
   resources :users
   resources :students
   resources :instructors
-  resources :admins
   resources :super_admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

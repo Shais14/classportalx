@@ -13,6 +13,12 @@ class StudentsController < UsersController
     end
   end
   
+  
+  def view
+    @student = Student.all
+    render 'view'
+  end
+  
   private
 
     def user_params
