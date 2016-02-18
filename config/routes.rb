@@ -1,9 +1,12 @@
 ClassPortal::Application.routes.draw do
-  get 'sessions/new'
+  resources :courses
+#  resources :application
+#  resources :users
+#  resources :sessions
 
-  get 'sessions/new'
-
+  
   root 'static_pages#home'
+  get 'sessions/new'
   get "static_pages/home"
   get "static_pages/admin"
   get "static_pages/instructor"
@@ -11,6 +14,10 @@ ClassPortal::Application.routes.draw do
   get "users/newInstructor"
   get "users/new"
   get "users/edit"
+  
+  get "courses/new"
+  get 'addCourse' => 'courses#new' 
+  
   get 'addInst' =>'users#newInstructor'
   post 'createInstructor' =>'users#createInstructor'
   get 'signup'  => 'users#new'
