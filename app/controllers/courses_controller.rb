@@ -73,8 +73,9 @@ class CoursesController < ApplicationController
   end
   
   def enroll
-    @course = Course.find(params[:id])
-    @student = @course.student
+    @course =  Course.find(params[:id])
+    redirect_to static_pages_admin_url  #just a random link.
+  
   end
   
   def view

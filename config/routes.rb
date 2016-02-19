@@ -23,12 +23,18 @@ ClassPortal::Application.routes.draw do
   get "courses/edit"
   get 'viewCourse' => 'courses#view'
   get 'editCourse' => 'courses#edit'
-
+  get 'enrollCourse/:id/enroll' => 'courses#enroll'
+  post 'enrollCourse/:id/enroll' => 'courses#enroll'
+ 
  
   get "students/view"
   get 'viewStudent' => 'students#view' 
  
-  
+  resources :courses do
+  member do
+    get 'enroll'
+  end
+end
   get 'addInst' =>'users#newInstructor'
   post 'createInstructor' =>'users#createInstructor'
   get 'editInst' => 'instructors#edit'
