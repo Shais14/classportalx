@@ -1,5 +1,5 @@
 class InstructorsController < UsersController
-   def new
+    def new
       @instructor = Instructor.new
     end
     

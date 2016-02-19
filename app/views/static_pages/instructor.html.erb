@@ -4,5 +4,5 @@
   This is the instructor home page for the <b>Class Portal</b> application.
 </p>
 
-<p><%= link_to "View Courses", viewCourse_path, class: "btn btn-lg btn-primary" %></p>
-<p><%= link_to "Edit Profile", editInst_path, class: "btn btn-lg btn-primary" %></p>
+<!--<p><%= link_to "View Courses", viewCourse_path, class: "btn btn-lg btn-primary" %></p>-->
+<p><%= link_to "Edit Profile", editInst_path(@instructor ,:id = 1), class: "btn btn-lg btn-primary" %></p>

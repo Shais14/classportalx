@@ -10,19 +10,19 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :studentID %><br>
-    <%= f.number_field :studentID %>
+    <%= f.label :name, 'Student' %><br>
+    <%= collection_select(:grade, :student_id, Student.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :courseID %><br>
-    <%= f.number_field :courseID %>
+    <%= f.label :name, 'Course'  %><br>
+    <%= collection_select(:grade, :course_id, Course.all, :id, :title) %>
   </div>
   <div class="field">
     <%= f.label :value %><br>
     <%= f.text_field :value %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
