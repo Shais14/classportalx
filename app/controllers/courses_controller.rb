@@ -66,6 +66,14 @@ class CoursesController < ApplicationController
     @course = Course.all
     render 'view'
   end
+  
+  def grades
+    if logged_in? && (current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor")
+      @grades = Grade.where("course_id = ?", params[:course_id])
+    else
+      redirect_to static_pages_home_url
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
