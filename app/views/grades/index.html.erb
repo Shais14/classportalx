@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<% if current_user.type == "Student" %>
+<h1>Your Grades</h1>
+<% elsif current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+<h1>All Grades</h1>
+<% else %>
+<h1><%=current_user.name + "'s Grades" %></h1>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+        <th>Student Name</th>
+      <% end %>
+      <th>Course Title</th>
+      <th>Grade</th>
+      <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+        <th colspan="3"></th>
+      <% else %>
+        <th colspan="3"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grades.each do |grade| %>
+      <tr>
+        <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+          <td><%= Student.find(grade.student_id).name %></td>
+        <% end %>
+        <td><%= Course.find(grade.course_id).title %></td>
+        <td><%= grade.value %></td>
+        <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" %>
+          <td><%= link_to 'Show', grade %></td>
+          <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
+          <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+  <%= link_to 'Post a grade', new_grade_path %>
+<% end %>

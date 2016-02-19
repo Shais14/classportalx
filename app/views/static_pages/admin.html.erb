@@ -1,10 +1,17 @@
 <% provide(:title, "Admin Home") %>
+<<<<<<< HEAD
 <h1>Admin Home</h1>
+=======
+<h1>Class Portal Admin Home</h1>
+>>>>>>> a10f98fb6359441795f17285368d209ad92fbd76
 <p>
-  This is the admin home page for the <b>Class Portal</b> application.
+  Select what you would like to do below.
 </p>
 
 <p><%= link_to "Add Instructor", new_instructor_path, class: "btn btn-lg btn-primary" %></p>
 <p><%= link_to "Add Course", new_course_path, class: "btn btn-lg btn-primary" %></p>
+
 <p><%= link_to "View Courses", viewCourse_path, class: "btn btn-lg btn-primary" %></p>
-<p><%= link_to "View Students", viewStudent_path, class: "btn btn-lg btn-primary" %></p>
+<p><%= link_to "View Students", students_url, class: "btn btn-lg btn-primary" %></p>
+
+<p><%= link_to "View all grades", grades_url, class: "btn btn-lg btn-primary" %></p>

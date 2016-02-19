@@ -1,6 +1,10 @@
 class StudentsController < UsersController
   # has_and_belongs_to_many :courses, :class_name => 'Course'
 
+  def index
+    @students = Student.all
+  end
+  
   def new
     @student = Student.new
   end
@@ -15,6 +19,7 @@ class StudentsController < UsersController
     end
   end
   
+  private 
   
   def view
     @student = Student.all
