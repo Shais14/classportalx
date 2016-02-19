@@ -4,7 +4,15 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
+    if logged_in?
+      if current_user.type == "Student"
+        @grades = Student.find(current_user.id).grades
+      elsif current_user.type == "Admin" || current_user.type == "SuperAdmin"
+        @grades = Grade.all
+      end
+    else
+      redirect_to static_pages_home_url
+    end
   end
 
   # GET /grades/1
