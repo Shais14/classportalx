@@ -1,4 +1,6 @@
 class StudentsController < UsersController
+  # has_and_belongs_to_many :courses, :class_name => 'Course'
+
   def index
     @students = Student.all
   end
@@ -24,13 +26,16 @@ class StudentsController < UsersController
     render 'view'
   end
   
-  def destroy
-    @source.destroy
+   def destroy
+    @student.destroy
     respond_to do |format|
       format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
+  
+  
+  private
 
     def user_params
       params.require(:student).permit(:name, :email, :password,

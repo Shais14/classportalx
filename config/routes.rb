@@ -20,8 +20,9 @@ ClassPortal::Application.routes.draw do
   get "super_admins/new"
   get "courses/new"
   get "courses/view"
+  get "courses/edit"
   get 'viewCourse' => 'courses#view'
-  
+  get 'editCourse' => 'courses#edit'
 
  
   get "students/view"

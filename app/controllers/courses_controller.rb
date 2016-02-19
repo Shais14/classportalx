@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  
+  
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -10,6 +12,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+     @course = Course.find(params[:id])
+    
   end
 
   # GET /courses/new
@@ -19,6 +23,8 @@ class CoursesController < ApplicationController
 
   # GET /courses/edit
   def edit
+     @course = Course.find(params[:id])
+     render 'edit'
   end
 
   # POST /courses
@@ -42,7 +48,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to static_pages_admin_url, notice: 'Course was successfully updated.' }
+        format.html { redirect_to  viewCourse_path, notice: 'Course was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,11 +62,20 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to static_pages_admin_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
   
+  def details
+    @course =  Course.find(params[:id])
+    render 'details'
+  end
+  
+  def enroll
+    @course = Course.find(params[:id])
+    @student = @course.student
+  end
   
   def view
     @course = Course.all

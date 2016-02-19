@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+   
+<div class="container">
+        <h3>Name</h3>
+           <b><%= @course.title %></b>
+        <h4>Description</h4>
+            <p><%= @course.description %></p>
+        <h4>Instructor</h4>
+            <p><%= @course.instructor %></p>
+</div>
