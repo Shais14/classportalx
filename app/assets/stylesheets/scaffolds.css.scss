@@ -20,9 +20,9 @@ pre {
 
 a {
   color: #000;
-  &:visited {
-    color: #666;
-  }
+  // &:visited {
+  //   color: #666;
+  // }
   &:hover {
     color: #fff;
     background-color: #000;
@@ -34,6 +34,21 @@ div {
     margin-bottom: 10px;
   }
 }
+
+th {
+    background-color: #060D65;
+    color: white;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+
+tr:hover{background-color:#f5f5f5}
+
 
 #notice {
   color: green;
@@ -66,4 +81,12 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.center{
+  text-align: center;
+}
+
+.big_size{
+  font-size: 20px;
 }
