@@ -1,4 +1,8 @@
 class StudentsController < UsersController
+  def index
+    @students = Student.all
+  end
+  
   def new
     @student = Student.new
   end
