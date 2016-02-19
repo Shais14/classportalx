@@ -22,6 +22,7 @@ ClassPortal::Application.routes.draw do
   get "courses/edit"
   get 'viewCourse' => 'courses#view'
   get 'editCourse' => 'courses#edit'
+
  
   get "students/view"
   get 'viewStudent' => 'students#view' 

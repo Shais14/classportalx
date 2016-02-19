@@ -1,4 +1,6 @@
 class StudentsController < UsersController
+  # has_and_belongs_to_many :courses, :class_name => 'Course'
+
   def new
     @student = Student.new
   end
@@ -19,9 +21,6 @@ class StudentsController < UsersController
     render 'view'
   end
   
-  # DELETE /courses/1
-  # DELETE /courses/1.json
-
    def destroy
     @student.destroy
     respond_to do |format|
@@ -29,6 +28,7 @@ class StudentsController < UsersController
       format.json { head :no_content }
     end
   end
+  
   
   private
 

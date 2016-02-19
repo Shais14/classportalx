@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  
+  
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -10,6 +12,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+     @course = Course.find(params[:id])
+    
   end
 
   # GET /courses/new
@@ -63,6 +67,15 @@ class CoursesController < ApplicationController
     end
   end
   
+  def details
+    @course =  Course.find(params[:id])
+    render 'details'
+  end
+  
+  def enroll
+    @course = Course.find(params[:id])
+    @student = @course.student
+  end
   
   def view
     @course = Course.all
