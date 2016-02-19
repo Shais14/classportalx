@@ -43,6 +43,8 @@ end
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  
+  get "/courses/:course_id/grades" => 'courses#grades'
 
   resources :users
   resources :students
