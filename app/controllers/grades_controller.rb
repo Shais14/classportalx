@@ -6,9 +6,9 @@ class GradesController < ApplicationController
   def index
     if logged_in?
       if current_user.type == "Student"
-        @grades = Student.find(current_user.id).grades
+        @students_courses = StudentCourse.where(student_id: current_user.id).where.not(grade: '')
       elsif current_user.type == "Admin" || current_user.type == "SuperAdmin"
-        @grades = Grade.all
+        @students_courses = StudentCourse.all
       end
     else
       redirect_to static_pages_home_url
@@ -22,7 +22,7 @@ class GradesController < ApplicationController
 
   # GET /grades/new
   def new
-    @grade = Grade.new
+    @student_course = StudentCourse.new
   end
 
   # GET /grades/1/edit
@@ -32,15 +32,23 @@ class GradesController < ApplicationController
   # POST /grades
   # POST /grades.json
   def create
-    @grade = Grade.new(grade_params)
-
-    respond_to do |format|
-      if @grade.save
-        format.html { redirect_to @grade, notice: 'Grade was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @grade }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @grade.errors, status: :unprocessable_entity }
+    @student_course = StudentCourse.where(student_id: params[:student_course][:student_id]).where(course_id: params[:student_course][:course_id]).first
+    
+     if @student_course.blank?
+        flash.now[:danger] = 'This student is not enrolled in this course' # Not quite right!
+        @student_course = StudentCourse.new
+        render 'new'
+     else
+      respond_to do |format|
+          #format.html { render action: 'new' }
+          #format.json { render json: @student_course.errors, status: :unprocessable_entity }
+        if @student_course.update_attribute(:grade, params[:student_course][:grade])
+          format.html { redirect_to grades_url, notice: 'Grade was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @student_course }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @student_course.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

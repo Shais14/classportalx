@@ -22,14 +22,14 @@
     <% @students_courses.each do |student_course| %>
       <tr>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
-          <td><%= Student.find(grade.student_id).name %></td>
+          <td><%= Student.find(student_course.student_id).name %></td>
         <% end %>
-        <td><%= Course.find(grade.course_id).title %></td>
-        <td><%= grade.value %></td>
+        <td><%= Course.find(student_course.course_id).title %></td>
+        <td><%= student_course.grade %></td>
         <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" %>
-          <td><%= link_to 'Show', grade %></td>
-          <td><%= link_to 'Edit', edit_grade_path(grade) %></td>
-          <td><%= link_to 'Destroy', grade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', student_course %></td>
+          <td><%= link_to 'Edit', edit_grade_path(student_course) %></td>
+          <td><%= link_to 'Destroy', student_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

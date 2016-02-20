@@ -57,12 +57,15 @@ end
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   
-  get "/courses/:course_id/grades" => 'courses#grades'
+  get "/courses/:course_id/grades" => 'student_courses#grades'
+  get "/grades/new" => "student_courses#newGrade"
+  post "/grades/new" => "student_courses#createGrade"
 
   resources :users
   resources :students
   resources :instructors
   resources :super_admins
+  resources :student_courses
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

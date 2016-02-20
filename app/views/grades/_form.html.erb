@@ -1,10 +1,10 @@
-<%= form_for(@grade) do |f| %>
-  <% if @grade.errors.any? %>
+<%= form_for @student_course, :url => grades_path, :html => {:method => :post} do |f| %>
+  <% if @student_course.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@grade.errors.count, "error") %> prohibited this grade from being saved:</h2>
+      <h2><%= pluralize(@student_course.errors.count, "error") %> prohibited this grade from being saved:</h2>
 
       <ul>
-      <% @grade.errors.full_messages.each do |message| %>
+      <% @student_course.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,18 +12,18 @@
   <% end %>
   <div class="field">
     <%= f.label :name, 'Student' %><br>
-    <%= collection_select(:grade, :student_id, Student.all, :id, :name) %>
+    <%= collection_select(:student_course, :student_id, Student.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :name, 'Course'  %><br>
-    <%= collection_select(:grade, :course_id, Course.all, :id, :title) %>
+    <%= collection_select(:student_course, :course_id, Course.all, :id, :title) %>
   </div>
   <div class="field">
-    <%= f.label :value %><br>
-    <%= f.text_field :value %>
+    <%= f.label :grade %><br>
+    <%= f.text_field :grade %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Post grade" %>
   </div>
 <% end %>
