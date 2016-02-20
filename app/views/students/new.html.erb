@@ -1,5 +1,10 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<% if logged_in? && (current_user.type == "Admin" || current_user.type == "SuperAdmin") %>
+  <% provide(:title, 'Create student account') %>
+  <h1>Create student account</h1>
+<% else %>
+  <% provide(:title, 'Sign up') %>
+  <h1>Sign up</h1>
+<% end %>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -16,9 +21,14 @@
       <%= f.password_field :password %><br />
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <%= f.password_field :password_confirmation %><br />
+      
+      <% if logged_in? && (current_user.type == "Admin" || current_user.type == "SuperAdmin") %>
+       <%= f.submit "Create student account", class: "btn btn-primary" %>
+      <% else %>
+       <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <% end %>
+     
     <% end %>
   </div>
 </div>
