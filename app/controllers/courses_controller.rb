@@ -6,15 +6,31 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @course = Course.all
-    render 'view'
+    if params[:course_title] || params[:course_number] || params[:course_instructor] || params[:course_description] || params[:course_status]
+        @course = Course.where("title = ? OR number = ? OR instructor =? OR description = ? OR status =?", params[:course_title], params[:course_number],params[:course_instructor], params[:course_description], params[:course_status]).order("created_at DESC")
+        render 'viewSelectCourse'
+    else
+      @course =Course.all
+      render 'view'
+    end
+    
+  end
+  
+  
+  def viewSelectCourse
+    
+  end
+
+
+
+  def searchCourse
+      
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
      @course = Course.find(params[:id])
-    
   end
 
   # GET /courses/new
@@ -74,8 +90,9 @@ class CoursesController < ApplicationController
   end
   
   def enroll
-    @course = Course.find(params[:id])
-    @student = @course.student
+    @course =  Course.find(params[:id])
+    redirect_to static_pages_admin_url  #just a random link.
+  
   end
   
   def view

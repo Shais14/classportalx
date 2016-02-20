@@ -1,0 +1,99 @@
+
+<div class="container">
+  
+ <% if current_user.type == "Student" %> 
+  
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course Number</th>
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Status</th>
+        <th>Enroll</th>
+      </tr>
+    </thead>
+  
+  <div class="course">
+    <h1 class="course-title"></h1>
+  
+
+    <% @course.each do |course| %>
+      
+      <tr>
+        <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
+        <td><%= course.title %></td>
+        <td><%= course.instructor %></td>
+        <td><%= course.status %></td>
+        <td><%= link_to "Request Enrollmentment", "http://gifsec.com/wp-content/uploads/GIF/2014/11/Fuck-you-Guardians-of-the-Galaxy-GIF.gif" %><td>
+        </tr>
+
+  <% end %>
+</div>
+
+</table>  
+
+<% end %> 
+ 
+ <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course Number</th>
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+<<<<<<< HEAD
+         <% end %>
+        <% if current_user.type == "Student" %>
+         <th>Enrollment Status</th>
+        <% end %>
+      </tr>
+    </thead>
+    
+    <% @course.each do |course|%>
+    <% @student_course = StudentCourse.where("student_id = ?", current_user.id).where("course_id = ?", course.id).first %>
+=======
+      </tr>
+    </thead>
+  
+>>>>>>> 66f8e8d51ab7bd1bc8c6dbb4ea0a79c99697ffd7
+    <tbody>
+    
+    <% @course.each do |course| %>
+      <tr>
+        <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
+        <td><%= course.title %></td>
+        <td><%= course.instructor %></td>
+        <td><%= course.status %></td>
+        <td><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.ids)  %> </td>
+        <td><%= link_to "delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
+<<<<<<< HEAD
+         <% end %>
+        <% if current_user.type == "Student"%>
+          <% if !@student_course.nil? %>
+            <% if @student_course.enrolled %>
+              <td>Enrolled</td>
+            <% elsif @student_course.requested %>
+              <td>Waiting on approval</td>
+            <% else %>
+             <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+            <% end %>
+          <% else %>
+            <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+          <% end %>
+        <% end %>
+=======
+        
+>>>>>>> 66f8e8d51ab7bd1bc8c6dbb4ea0a79c99697ffd7
+      </tr>
+    <% end %>
+    </tbody>
+      <% end %>
+    
+
+</div>

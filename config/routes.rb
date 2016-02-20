@@ -23,13 +23,33 @@ ClassPortal::Application.routes.draw do
   get "courses/edit"
   #get "courses/requestEnrollment"
   #get 'viewCourse' => 'courses#view'
+  get 'viewCourse' => 'courses#view'
+  
+  
+  
+  
+  
+  
+  get "/viewSelectCourse/:title/:number" => "courses#viewSelectCourse"
+  post "/viewSelectCourse/:title/:number" => "courses#viewSelectCourse"
+  
+# /:course_instructor/:course_description/:course_status
+  
+  get 'searchCourse' => 'courses#searchCourse'
+  
   get 'editCourse' => 'courses#edit'
-
+  get 'enrollCourse/:id/enroll' => 'courses#enroll'
+  post 'enrollCourse/:id/enroll' => 'courses#enroll'
+ 
  
   get "students/view"
   get 'viewStudent' => 'students#view' 
  
-  
+  resources :courses do
+  member do
+    get 'enroll'
+  end
+end
   get 'addInst' =>'users#newInstructor'
   post 'createInstructor' =>'users#createInstructor'
   get 'editInst' => 'instructors#edit'
