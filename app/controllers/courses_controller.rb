@@ -107,6 +107,42 @@ class CoursesController < ApplicationController
       redirect_to static_pages_home_url
     end
   end
+  
+  def requestEnrollment
+    if logged_in? && (current_user.type == "Student")
+      @student_course = StudentCourse.where("course_id = ?", params[:course_id]).where("student_id = ?", current_user.id).first
+      
+      if @student_course.blank?
+        @student_course = StudentCourse.new
+        @student_course.student_id = current_user.id
+        @student_course.course_id = params[:course_id]
+        @student_course.requested = true
+        
+        if @student_course.save
+          flash[:success] = "Enrollment request received"
+          redirect_to static_pages_home_url
+        elsif
+          flash[:error] = "There was an error processing your enrollment request"
+          redirect_to static_pages_home_url
+        end
+      elsif !@student_course.requested
+        @student_course.requested = true
+          if @student_course.save
+            flash[:success] = "Enrollment request received"
+            redirect_to static_pages_home_url
+          elsif
+            flash[:error] = "There was an error processing your enrollment request"
+            redirect_to static_pages_home_url
+          end
+      else
+        flash[:error] = "You have already requested enrollment for this course"
+        redirect_to static_pages_home_url
+      end
+    else
+      redirect_to static_pages_home_url
+      
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

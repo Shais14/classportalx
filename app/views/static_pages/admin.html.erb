@@ -5,10 +5,6 @@
 <h1>Class Portal Admin Home</h1>
 <p class="big_size">
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Shais
 <p>
   Select what you would like to do below.
 </p>
@@ -16,7 +12,8 @@
 <p><%= link_to "Add Instructor", new_instructor_path, class: "btn btn-lg btn-primary" %></p>
 <p><%= link_to "Add Course", new_course_path, class: "btn btn-lg btn-primary" %></p>
 
-<p><%= link_to "View Courses", viewCourse_path, class: "btn btn-lg btn-primary" %></p>
+<p><%= link_to "View Courses", courses_url, class: "btn btn-lg btn-primary" %></p>
 <p><%= link_to "View Students", students_url, class: "btn btn-lg btn-primary" %></p>
 
 <p><%= link_to "View all grades", grades_url, class: "btn btn-lg btn-primary" %></p>
+<p><%= link_to "View enrollment requests", '/enrollmentRequests', class: "btn btn-lg btn-primary" %></p>

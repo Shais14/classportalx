@@ -21,7 +21,7 @@
         <td><%= course.title %></td>
         <td><%= course.instructor %></td>
         <td><%= course.status %></td>
-        <td><%= link_to "Request Enrollmentment", "http://gifsec.com/wp-content/uploads/GIF/2014/11/Fuck-you-Guardians-of-the-Galaxy-GIF.gif" %><td>
+        <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
         </tr>
 
   <% end %>
