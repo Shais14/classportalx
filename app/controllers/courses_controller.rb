@@ -6,14 +6,31 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @course = Course.all
+    if params[:course_title] || params[:course_number] || params[:course_instructor] || params[:course_description] || params[:course_status]
+        @course = Course.where("title = ? OR number = ? OR instructor =? OR description = ? OR status =?", params[:course_title], params[:course_number],params[:course_instructor], params[:course_description], params[:course_status]).order("created_at DESC")
+        render 'viewSelectCourse'
+    else
+      @course =Course.all
+      render 'view'
+    end
+    
+  end
+  
+  
+  def viewSelectCourse
+    
+  end
+
+
+
+  def searchCourse
+      
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
      @course = Course.find(params[:id])
-    
   end
 
   # GET /courses/new

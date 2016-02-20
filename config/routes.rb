@@ -22,6 +22,19 @@ ClassPortal::Application.routes.draw do
   get "courses/view"
   get "courses/edit"
   get 'viewCourse' => 'courses#view'
+  
+  
+  
+  
+  
+  
+  get "/viewSelectCourse/:title/:number" => "courses#viewSelectCourse"
+  post "/viewSelectCourse/:title/:number" => "courses#viewSelectCourse"
+  
+# /:course_instructor/:course_description/:course_status
+  
+  get 'searchCourse' => 'courses#searchCourse'
+  
   get 'editCourse' => 'courses#edit'
   get 'enrollCourse/:id/enroll' => 'courses#enroll'
   post 'enrollCourse/:id/enroll' => 'courses#enroll'
