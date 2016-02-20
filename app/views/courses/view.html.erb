@@ -33,7 +33,7 @@
         <td><%= course.status %></td>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
         <td><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.ids)  %> </td>
-        <td><%= link_to "delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
+        <td><%= link_to "Delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
          <% end %>
         <% if current_user.type == "Student"%>
           <% if !@student_course.nil? %>
