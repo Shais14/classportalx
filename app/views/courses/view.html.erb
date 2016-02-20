@@ -1,45 +1,70 @@
 
 <div class="container">
- 
+  
+ <% if current_user.type == "Student" %> 
+  
+  
   <table class="table table-striped">
     <thead>
       <tr>
         <th>Course Number</th>
         <th>Title</th>
-        <!--<th>Description</th>-->
         <th>Instructor</th>
-        <!--<th>Start Date</th>-->
-        <!--<th>End Date</th>-->
         <th>Status</th>
-        <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
-        <th>Edit</th>
-        <th>Delete</th>
-         <% end %>
-        <% if current_user.type == "Student" %>
-         <th>Enroll</th>
-        <% end %>
+        <th>Enroll</th>
       </tr>
     </thead>
-    
-    <% @course.each do |course|%>
-    <tbody>
+  
+  <div class="course">
+    <h1 class="course-title"></h1>
+  
+
+    <% @course.each do |course| %>
+      
       <tr>
         <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
         <td><%= course.title %></td>
-        <!--<td><%= course.description %></td>-->
         <td><%= course.instructor %></td>
-        <!--<td><%= course.start_date %></td>-->
-        <!--<td><%= course.end_date %></td>-->
         <td><%= course.status %></td>
-        <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+        <td><%= link_to "Request Enrollmentment", "http://gifsec.com/wp-content/uploads/GIF/2014/11/Fuck-you-Guardians-of-the-Galaxy-GIF.gif" %><td>
+        </tr>
+
+  <% end %>
+</div>
+
+</table>  
+
+<% end %> 
+ 
+ <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course Number</th>
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+    
+    <% @course.each do |course| %>
+      <tr>
+        <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
+        <td><%= course.title %></td>
+        <td><%= course.instructor %></td>
+        <td><%= course.status %></td>
         <td><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.ids)  %> </td>
         <td><%= link_to "delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
-         <% end %>
-        <% if current_user.type == "Student"%>
-        <td><%= link_to "Enroll", "http://gifsec.com/wp-content/uploads/GIF/2014/11/Fuck-you-Guardians-of-the-Galaxy-GIF.gif" %><td>
-        <% end %>
+        
       </tr>
-    </tbody>
     <% end %>
-  </table>
+    </tbody>
+      <% end %>
+    
+
 </div>

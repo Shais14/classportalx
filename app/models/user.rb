@@ -41,4 +41,5 @@ class User < ActiveRecord::Base
     def self.types
       %w(Admin SuperAdmin Instructor Student)
     end
+    
 end
