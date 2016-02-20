@@ -7,7 +7,7 @@
         <th>Title</th>
         <th>Instructor</th>
         <th>Status</th>
-        <th>Enroll</th>
+        <th>Enrollment Status</th>
     
       </tr>
     </thead>
@@ -15,13 +15,25 @@
   <div class="course">
 
     <% @course.each do |course| %>
-      
+      <% @student_course = StudentCourse.where("student_id = ?", current_user.id).where("course_id = ?", course.id).first %>
       <tr>
         <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
         <td><%= course.title %></td>
         <td><%= course.instructor %></td>
         <td><%= course.status %></td>
-        <td><%= link_to "Request Enrollmentment", "http://gifsec.com/wp-content/uploads/GIF/2014/11/Fuck-you-Guardians-of-the-Galaxy-GIF.gif" %><td>
+          <% if current_user.type == "Student"%>
+          <% if !@student_course.nil? %>
+            <% if @student_course.enrolled %>
+              <td>Enrolled</td>
+            <% elsif @student_course.requested %>
+              <td>Waiting on approval</td>
+            <% else %>
+             <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+            <% end %>
+          <% else %>
+            <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+          <% end %>
+        <% end %>
         </tr>
 
   <% end %>
