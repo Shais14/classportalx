@@ -11,9 +11,7 @@ class StudentsController < UsersController
 
   def create
     @student = Student.new(user_params)
-    if @student.save
-      flash[:success] = "Welcome to the Class Portal!"
-      redirect_to "/static_pages/student"
+    
     if logged_in? && (current_user.type == "Admin" || current_user.type == "SuperAdmin")
       if @student.save
         flash[:success] = "Student added"
@@ -21,17 +19,14 @@ class StudentsController < UsersController
       else
         render 'new'
       end
+    elsif @student.save
+      flash[:success] = "Welcome to the Class Portal!"
+      redirect_to "/static_pages/student"
     else
-      if @student.save
-        flash[:success] = "Welcome to the Class Portal!"
-        redirect_to "/static_pages/student"
-      else
-        render 'new'
-      end
+      render 'new'
     end
     
   end
-end
 
   def destroy
     @student = Student.find(params[:id])
