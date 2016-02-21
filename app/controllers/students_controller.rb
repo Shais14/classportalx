@@ -11,6 +11,11 @@ class StudentsController < UsersController
 
   def create
     @student = Student.new(user_params)
+<<<<<<< HEAD
+    if @student.save
+      flash[:success] = "Welcome to the Class Portal!"
+      redirect_to "/static_pages/student"
+=======
     if logged_in? && (current_user.type == "Admin" || current_user.type == "SuperAdmin")
       if @student.save
         flash[:success] = "Student added"
@@ -18,6 +23,7 @@ class StudentsController < UsersController
       else
         render 'new'
       end
+>>>>>>> 5e60d685e4165af71822a347182aadf8b66b0508
     else
       if @student.save
         flash[:success] = "Welcome to the Class Portal!"
@@ -29,6 +35,21 @@ class StudentsController < UsersController
     
   end
   
+<<<<<<< HEAD
+  
+  private 
+  
+  # def view
+  #   @student = Student.all
+  #   render 'view'
+  # end
+  
+   def destroy
+    @student.destroy
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.json { head :no_content }
+=======
   def destroy
     @student = Student.find(params[:id])
     deleted_student_id = @student.id
@@ -40,6 +61,7 @@ class StudentsController < UsersController
       end
     else
       redirect_to static_pages_home_url
+>>>>>>> 5e60d685e4165af71822a347182aadf8b66b0508
     end
   end
   
