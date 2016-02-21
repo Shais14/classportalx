@@ -10,6 +10,7 @@
  <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
         <p><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.id , class: "btn btn-lg btn-primary")  %> <p>
         <p><%= link_to "Delete", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>
+        <p><%= link_to "View enrolled students", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>    
     <% end %>
 
 <% if current_user.type == "Student"%>

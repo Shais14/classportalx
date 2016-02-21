@@ -11,17 +11,12 @@
     </tr>
   </thead>
   <tbody>
-    
-  
-    <!--<ul class="students">-->
-      <% @students.each do |student| %>
-        <tr>
-          <td><%= link_to student.name, student %></td>
-          <td><%= student.email %></td>
-          <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </ul>
-
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= link_to student.name, student %></td>
+        <td><%= student.email %></td>
+        <td><%= link_to 'Delete', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

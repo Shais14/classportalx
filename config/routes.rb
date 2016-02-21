@@ -67,6 +67,9 @@ end
   get "/enrollmentRequests" => "student_courses#showEnrollmentRequests"
   get "/enrollmentRequests/courses/:course_id/students/:student_id/approve" => "student_courses#approveRequest"
   get "/enrollmentRequests/courses/:course_id/students/:student_id/deny" => "student_courses#denyRequest"
+  
+  get "/courses/:course_id/students" => "courses#students"
+  get "/student_courses/:student_course_id/edit" => "grades#edit"
 
   resources :users
   resources :students
