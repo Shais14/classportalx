@@ -8,7 +8,7 @@ class GradesController < ApplicationController
       if current_user.type == "Student"
         @students_courses = StudentCourse.where(student_id: current_user.id).where.not(grade: '')
       elsif current_user.type == "Admin" || current_user.type == "SuperAdmin"
-        @students_courses = StudentCourse.all
+        @students_courses = StudentCourse.where.not(grade: '')
       end
     else
       redirect_to static_pages_home_url
@@ -80,7 +80,7 @@ class GradesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_grade
-      @grade = Grade.find(params[:id])
+      @student_course = StudentCourse.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

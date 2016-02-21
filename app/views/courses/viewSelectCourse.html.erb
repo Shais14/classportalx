@@ -20,8 +20,9 @@
         <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
         <td><%= course.title %></td>
         <td><%= course.instructor %></td>
-        <td><%= course.status %></td> 
-        <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td></tr>
+        <td><%= course.status %></td>
+        <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+        </tr>
 
   <% end %>
 </div>

@@ -1,7 +1,7 @@
 ClassPortal::Application.routes.draw do
   resources :grades
   resources :admins
-  resources :courses
+  resources :courses, :collection => {:requestEnrollment => :post}
 #  resources :application
 #  resources :users
 #  resources :sessions
@@ -21,6 +21,8 @@ ClassPortal::Application.routes.draw do
   get "courses/new"
   get "courses/view"
   get "courses/edit"
+  #get "courses/requestEnrollment"
+  #get 'viewCourse' => 'courses#view'
   get 'viewCourse' => 'courses#view'
   
   
@@ -39,6 +41,10 @@ ClassPortal::Application.routes.draw do
   get 'enrollCourse/:id/enroll' => 'courses#enroll'
   post 'enrollCourse/:id/enroll' => 'courses#enroll'
  
+  get "student_courses/viewHistory"
+  get '/viewHistory/:id' => 'student_courses#viewHistory'
+  post '/viewHistory/:id' => 'student_courses#viewHistory'
+  
  
   get "students/view"
   get 'viewStudent' => 'students#view' 
@@ -58,8 +64,13 @@ end
   delete 'logout'  => 'sessions#destroy'
   
   get "/courses/:course_id/grades" => 'student_courses#grades'
+  get "/courses/:course_id/requestEnrollment" => 'courses#requestEnrollment'
   get "/grades/new" => "student_courses#newGrade"
   post "/grades/new" => "student_courses#createGrade"
+  
+  get "/enrollmentRequests" => "student_courses#showEnrollmentRequests"
+  get "/enrollmentRequests/courses/:course_id/students/:student_id/approve" => "student_courses#approveRequest"
+  get "/enrollmentRequests/courses/:course_id/students/:student_id/deny" => "student_courses#denyRequest"
 
   resources :users
   resources :students

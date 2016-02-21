@@ -13,18 +13,19 @@ class StudentsController < UsersController
     @student = Student.new(user_params)
     if @student.save
       flash[:success] = "Welcome to the Class Portal!"
-      redirect_to @student
+      redirect_to "/static_pages/student"
     else
       render 'new'
     end
   end
   
+  
   private 
   
-  def view
-    @student = Student.all
-    render 'view'
-  end
+  # def view
+  #   @student = Student.all
+  #   render 'view'
+  # end
   
    def destroy
     @student.destroy

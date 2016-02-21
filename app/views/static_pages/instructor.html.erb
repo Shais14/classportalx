@@ -4,8 +4,7 @@
   This is the instructor home page for the <b>Class Portal</b> application.
 </p>
 
-<p><%= link_to "View Courses", viewCourse_path, class: "btn btn-lg btn-primary" %></p>
-
+<p><%= link_to "View Courses", courses_url, class: "btn btn-lg btn-primary" %></p>
 <p><%= link_to "Edit Profile", current_user, class: "btn btn-lg btn-primary" %></p>
 
-
+<p><%= link_to "View enrollment requests", '/enrollmentRequests', class: "btn btn-lg btn-primary" %></p>

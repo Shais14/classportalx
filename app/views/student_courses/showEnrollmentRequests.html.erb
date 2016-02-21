@@ -1,0 +1,36 @@
+    <p id="notice"><%= notice %></p>
+
+<h1>Enrollment Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" ||  current_user.type == "Instructor" %>
+        <th>Student Name</th>
+      <% end %>
+      <th>Course Title</th>
+      <th colspan="2"></th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students_courses.each do |student_course| %>
+     <%= form_for(:student_course) do |f| %>
+      <tr>
+        <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+          <td><%= Student.find(student_course.student_id).name %></td>
+        <% end %>
+        <td><%= Course.find(student_course.course_id).title %></td>
+        <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+          <td><%= link_to 'Approve', "/enrollmentRequests/courses/#{student_course.course_id}/students/#{student_course.student_id}/approve" %></td>
+          <td><%= link_to 'Deny', "/enrollmentRequests/courses/#{student_course.course_id}/students/#{student_course.student_id}/deny" %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

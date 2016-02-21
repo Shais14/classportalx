@@ -1,0 +1,22 @@
+<h1>Student Course History</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+          <td>Course</td>
+          <td>Grade</td>
+    </tr>
+  </thead>
+  <tbody>
+      
+    <!--<ul class="students">-->
+      <% StudentCourse.where('student_id = ?', params[:id]).each do |c| %>
+        <tr>
+        
+          <td><%=  Course.find(c.course_id).title   %></td>
+          <td><%= c.grade %></td>
+        </tr>
+      <% end %>
+    </ul>
+
+  </tbody>
+</table>
