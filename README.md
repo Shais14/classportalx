@@ -4,6 +4,9 @@ This application allows admins, instructors, and students to sign up and view in
 
 Note: The framework for this application was adapted from the [Ruby on Rails Tutorial][1] under the [MIT License][2] and the [Beerware License][3].
 
+The admin login details are:
+Email: admin@boss.com
+Password: admin
 
   [1]: https://www.railstutorial.org/
   [2]: http://opensource.org/licenses/MIT
