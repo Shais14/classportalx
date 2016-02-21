@@ -41,6 +41,10 @@ ClassPortal::Application.routes.draw do
   get 'enrollCourse/:id/enroll' => 'courses#enroll'
   post 'enrollCourse/:id/enroll' => 'courses#enroll'
  
+  get "student_courses/viewHistory"
+  get '/viewHistory/:id' => 'student_courses#viewHistory'
+  post '/viewHistory/:id' => 'student_courses#viewHistory'
+  
  
   get "students/view"
   get 'viewStudent' => 'students#view' 

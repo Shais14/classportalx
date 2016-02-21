@@ -1,23 +1,25 @@
 <% provide(:title, 'All students') %>
 <h1>All students</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="2"></th>
+          <td>Name</td>
+          <td>E-mail</td>
+          <td>History</td>
     </tr>
   </thead>
   <tbody>
     
-  
-    <!--<ul class="students">-->
+  <!--<ul class="students">-->
       <% @students.each do |student| %>
         <tr>
           <td><%= link_to student.name, student %></td>
           <td><%= student.email %></td>
+          <td><%= link_to "View", "/viewHistory/#{student.id}" %></td>        
         </tr>
       <% end %>
-    </ul>
+    </ul> 
 
   </tbody>
 </table>

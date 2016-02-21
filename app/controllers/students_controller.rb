@@ -19,6 +19,7 @@ class StudentsController < UsersController
     end
   end
   
+  
   private 
   
   # def view
