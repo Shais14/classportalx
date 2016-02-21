@@ -1,11 +1,23 @@
 <% provide(:title, 'All admins') %>
 <h1>All admins</h1>
 
-<ul class="admins">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
   <% @admins.each do |admin| %>
-    <li>
-      <%= link_to admin.name, admin %>
-      <%= admin.email %>
-    </li>
+    <tr>
+      <td><%= link_to admin.name, admin %></td>
+      <td><%= admin.email %></td>
+      <td><%= link_to 'Delete', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
+

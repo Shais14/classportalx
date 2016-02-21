@@ -10,12 +10,16 @@
  <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
         <p><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.id , class: "btn btn-lg btn-primary")  %> <p>
         <p><%= link_to "Delete", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>
+        <p><%= link_to "View enrolled students", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>    
     <% end %>
 
-<% if current_user.type == "Instructor"%>
- <p><%= link_to('Request Enrollment',  enroll_course_path(id: @course.id) , class: "btn btn-lg btn-primary") %> </p>
+
+<% if current_user.type == "Student"%>
+<% @student_course = StudentCourse.where("course_id = ?", @course.id).where("student_id = ?", current_user.id).first %>
+<% if @student_course.blank? || !@student_course.requested %>
+ <p><%= link_to('Request Enrollment',  "#{@course.id}/requestEnrollment" , class: "btn btn-lg btn-primary", data: { confirm: "Are you sure you want to request an enrollment for this course?" }) %> </p>
+ <% end %>
         <% end %>
-        
         
 </div>
 

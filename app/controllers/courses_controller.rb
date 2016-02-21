@@ -100,9 +100,9 @@ class CoursesController < ApplicationController
     render 'view'
   end
   
-  def grades
+  def students
     if logged_in? && (current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor")
-      @students_courses = StudentsCourses.where("course_id = ?", params[:course_id])
+      @students_courses = StudentCourse.where("course_id = ?", params[:course_id])
     else
       redirect_to static_pages_home_url
     end

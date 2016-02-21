@@ -27,6 +27,7 @@ class GradesController < ApplicationController
 
   # GET /grades/1/edit
   def edit
+    @student_course = StudentCourse.find(params[:student_course_id])
   end
 
   # POST /grades
@@ -80,7 +81,7 @@ class GradesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_grade
-      @student_course = StudentCourse.find(params[:id])
+      #@student_course = StudentCourse.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

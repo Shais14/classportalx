@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Grades for <%= Course.find(params[:course_id]).title%></h1>
+<h1>Students in <%= Course.find(params[:course_id]).title%></h1>
 
 <table>
   <thead>
@@ -11,7 +11,8 @@
       <th>Course Title</th>
       <th>Grade</th>
       <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" ||  current_user.type == "Instructor"%>
-        <th colspan="3"></th>
+        <th>Actions</th>
+        <th colspan="4"></th>
       <% else %>
         <th colspan="3"></th>
       <% end %>
@@ -27,8 +28,12 @@
         <td><%= Course.find(student_course.course_id).title %></td>
         <td><%= student_course.grade %></td>
         <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" %>
-          <td><%= link_to 'Edit', "/student_courses/#{student_course.id}/edit" %></td>
-          <td><%= link_to 'Destroy', student_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% if student_course.grade.blank? %>
+            <td><%= link_to 'Post grade', "/student_courses/#{student_course.id}/edit"  %></td>
+          <% else %>
+            <td><%= link_to 'Edit grade', "/student_courses/#{student_course.id}/edit"  %></td>
+          <% end %>
+          <td><%= link_to 'Drop', student_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

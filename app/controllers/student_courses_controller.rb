@@ -50,7 +50,7 @@ class StudentCoursesController < ApplicationController
       redirect_to '/enrollmentRequests'
     end
   end
-  
+
   def viewHistory
     
   end
