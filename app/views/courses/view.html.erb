@@ -11,6 +11,7 @@
         <!--<th>End Date</th>-->
         <th>Status</th>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+        <th>Grades</th>
         <th>Edit</th>
         <th>Delete</th>
          <% end %>
@@ -32,6 +33,7 @@
         <!--<td><%= course.end_date %></td>-->
         <td><%= course.status %></td>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+        <td><%= link_to('View grades', "/courses/#{course.id}/grades")  %></td>
         <td><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.ids)  %> </td>
         <td><%= link_to "Delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
          <% end %>
