@@ -76,6 +76,8 @@ end
   
   get "/courses/:course_id/students" => "courses#students"
   get "/student_courses/:student_course_id/edit" => "grades#edit"
+  
+  get "/users/:user_id/history" => "user_histories#for_user"
 
   resources :users
   resources :students

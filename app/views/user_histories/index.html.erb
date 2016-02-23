@@ -1,12 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>All User History Entries</h1>
+<% if @user_histories_all %>
+  <h1>All Course History Entries</h1>
+<% else %>
+  <h1>Your Course History</h1>
+<% end %>
 
 <div class="container">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Student</th>
+        <% if @user_histories_all %>
+          <th>Student</th>
+        <% end %>
         <th>Course</th>
         <th>Action</th>
         <th>Timestamp</th>
@@ -16,14 +22,17 @@
   <tbody>
     <% @user_histories.reverse.each do |user_history| %>
       <tr>
-        <% student = Student.find(user_history.user_id) %>
-        <% course = Course.find(user_history.course_id) %>
-        <% if !student.nil? %>
-          <td><%= link_to student.name, student %></td>
-        <% else %>
-          <td><%= user_history.user_id %></td>
+        <% if @user_histories_all %>
+          <% student = Student.find(user_history.user_id) %>
+          
+          <% if !student.nil? %>
+            <td><%= link_to student.name, student %></td>
+          <% else %>
+            <td><%= user_history.user_id %></td>
+          <% end %>
         <% end %>
         
+        <% course = Course.find(user_history.course_id) %>
         <% if !course.nil? %>
           <td><%= link_to course.title, course %></td>
         <% else %>

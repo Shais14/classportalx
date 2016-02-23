@@ -6,5 +6,5 @@
 
 <p><%= link_to "Search Courses", searchCourse_path, class: "btn btn-lg btn-primary" %></p>
 <p><%= link_to "View Courses", courses_path, class: "btn btn-lg btn-primary" %></p>
-<p><%= link_to "View Course History", "/viewHistory/#{current_user.id}", class: "btn btn-lg btn-primary" %></p>       
+<p><%= link_to "View Course History", "/users/#{current_user.id}/history", class: "btn btn-lg btn-primary" %></p>       
 <p><%= link_to "View your grades", grades_url, class: "btn btn-lg btn-primary" %></p>

@@ -5,6 +5,7 @@ class UserHistoriesController < ApplicationController
   # GET /user_histories.json
   def index
     @user_histories = UserHistory.all
+    @user_histories_all = true
   end
 
   # GET /user_histories/1
@@ -59,6 +60,12 @@ class UserHistoriesController < ApplicationController
       format.html { redirect_to user_histories_url }
       format.json { head :no_content }
     end
+  end
+  
+  def for_user
+    @user_histories = UserHistory.where("user_id = ?", params[:user_id])
+    @user_histories_all = false
+    render 'index'
   end
 
   private
