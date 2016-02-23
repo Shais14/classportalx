@@ -1,4 +1,5 @@
 ClassPortal::Application.routes.draw do
+  resources :user_histories
   resources :grades
   resources :admins
   resources :courses, :collection => {:requestEnrollment => :post}
