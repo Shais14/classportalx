@@ -22,6 +22,13 @@ class StudentCoursesController < ApplicationController
       @student_course.requested = false
       @student_course.enrolled = true
       if @student_course.save
+        @user_history = UserHistory.new
+        @user_history.user_id = params[:student_id]
+        @user_history.course_id = params[:course_id]
+        @user_history.action = "enroll"
+        #No error if history doesn't save
+        @user_history.save
+        #if @user_history.save
         flash[:success] = "Enrollment request approved"
         redirect_to '/enrollmentRequests'
       else

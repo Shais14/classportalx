@@ -1,26 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing User Histories</h1>
+<h1>All User History Entries</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Course</th>
-      <th>Action</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
 
   <tbody>
-    <% @user_histories.each do |user_history| %>
+    <% @user_histories.reverse.each do |user_history| %>
       <tr>
-        <td><%= user_history.user_id %></td>
-        <td><%= user_history.course_id %></td>
+        <% student = Student.find(user_history.user_id) %>
+        <% course = Course.find(user_history.course_id) %>
+        <% if !student.nil? %>
+          <td><%= link_to student.name, student %></td>
+        <% else %>
+          <td><%= user_history.user_id %></td>
+        <% end %>
+        
+        <% if !course.nil? %>
+          <td><%= link_to course.title, course %></td>
+        <% else %>
+          <td><%= user_history.course_id %></td>
+        <% end %>
         <td><%= user_history.action %></td>
-        <td><%= link_to 'Show', user_history %></td>
-        <td><%= link_to 'Edit', edit_user_history_path(user_history) %></td>
-        <td><%= link_to 'Destroy', user_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user_history.created_at %></td>
+        <!--<td><%= link_to 'Show', user_history %></td>-->
+        <!--<td><%= link_to 'Edit', edit_user_history_path(user_history) %></td>-->
+        <!--<td><%= link_to 'Destroy', user_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +41,4 @@
 
 <br>
 
-<%= link_to 'New User history', new_user_history_path %>
+<!--<%= link_to 'New User history', new_user_history_path %>-->
