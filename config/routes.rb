@@ -75,6 +75,8 @@ end
   
   get "/courses/:course_id/students" => "courses#students"
   get "/student_courses/:student_course_id/edit" => "grades#edit"
+  
+  get "/courses/:course_id/drop" => "courses#drop"
 
   resources :users
   resources :students

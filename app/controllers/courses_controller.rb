@@ -143,6 +143,17 @@ class CoursesController < ApplicationController
       
     end
   end
+  
+  def drop
+    @student_course = StudentCourse.where("course_id = ?", params[:course_id]).where("student_id = ?", current_user.id).first
+    
+    if !@student_course.blank?
+      if @student_course.destroy
+        flash[:success] = "You successfully dropped the course"
+        redirect_to static_pages_home_url
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
