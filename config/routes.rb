@@ -1,4 +1,5 @@
 ClassPortal::Application.routes.draw do
+  resources :user_histories
   resources :grades
   resources :admins
   resources :courses, :collection => {:requestEnrollment => :post}
@@ -76,6 +77,7 @@ end
   get "/courses/:course_id/students" => "courses#students"
   get "/student_courses/:student_course_id/edit" => "grades#edit"
   
+  get "/users/:user_id/history" => "user_histories#for_user"
   get "/courses/:course_id/drop" => "courses#drop"
 
   resources :users
