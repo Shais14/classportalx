@@ -144,13 +144,24 @@ class CoursesController < ApplicationController
     end
   end
   
-  def drop
+  def dropStudent
     @student_course = StudentCourse.where("course_id = ?", params[:course_id]).where("student_id = ?", current_user.id).first
     
     if !@student_course.blank?
       if @student_course.destroy
         flash[:success] = "You successfully dropped the course"
-        redirect_to static_pages_home_url
+        redirect_to '/courses'
+      end
+    end
+  end
+  
+  def drop
+    @student_course = StudentCourse.where("course_id = ?", params[:course_id]).where("student_id = ?", params[:student_id]).first
+    
+    if !@student_course.blank?
+      if @student_course.destroy
+        flash[:success] = "You successfully dropped the course"
+        redirect_to "/courses/#{params[:course_id]}/students/"
       end
     end
   end

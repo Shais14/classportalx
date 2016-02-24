@@ -78,7 +78,8 @@ end
   get "/student_courses/:student_course_id/edit" => "grades#edit"
   
   get "/users/:user_id/history" => "user_histories#for_user"
-  get "/courses/:course_id/drop" => "courses#drop"
+  get "/courses/:course_id/drop" => "courses#dropStudent"
+  get "/courses/:course_id/students/:student_id/drop" => "courses#drop"
 
   resources :users
   resources :students
