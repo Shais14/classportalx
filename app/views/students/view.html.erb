@@ -1,0 +1,25 @@
+   
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+      </tr>
+    </thead>
+    
+    <% @student.each do |student|%>
+    <tbody>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.email %></td>
+
+        <td><%= link_to('Delete', controller: 'student', action:'destroy', id: @student.ids) %> 
+
+      </tr>
+    </tbody>
+    <% end %>
+    
+  </table>
+</div>
+

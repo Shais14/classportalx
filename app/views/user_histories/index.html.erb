@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<% if @user_histories_all %>
+  <h1>All Course History Entries</h1>
+<% else %>
+  <h1>Your Course History</h1>
+<% end %>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% if @user_histories_all %>
+          <th>Student</th>
+        <% end %>
+        <th>Course</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+
+  <tbody>
+    <% @user_histories.reverse.each do |user_history| %>
+      <tr>
+        <% if @user_histories_all %>
+          <% student = Student.find(user_history.user_id) %>
+          
+          <% if !student.nil? %>
+            <td><%= link_to student.name, student %></td>
+          <% else %>
+            <td><%= user_history.user_id %></td>
+          <% end %>
+        <% end %>
+        
+        <% course = Course.find(user_history.course_id) %>
+        <% if !course.nil? %>
+          <td><%= link_to course.title, course %></td>
+        <% else %>
+          <td><%= user_history.course_id %></td>
+        <% end %>
+        <td><%= user_history.action %></td>
+        <td><%= user_history.created_at %></td>
+        <!--<td><%= link_to 'Show', user_history %></td>-->
+        <!--<td><%= link_to 'Edit', edit_user_history_path(user_history) %></td>-->
+        <!--<td><%= link_to 'Destroy', user_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<!--<%= link_to 'New User history', new_user_history_path %>-->

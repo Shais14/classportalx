@@ -1,0 +1,35 @@
+<% if current_user.type == "Student" %>
+    <h3>Apply filters</h3>
+    <p>*Fill in at least 1 field</p>
+      <%= form_tag(courses_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+    <div class="input-append">
+      <ul>
+      <%= text_field_tag :course_title, params[:course_title], class: "span2", placeholder: "Course Title" %> 
+      </ul>
+      <ul>
+      <%= text_field_tag :course_number, params[:course_number], class: "span2", placeholder: "Course Number" %>
+      </ul>
+      <ul>
+      <%= text_field_tag :course_instructor, params[:course_instructor], class: "span2", placeholder: "Course Instructer" %>
+      </ul>
+      <ul>
+      <%= text_field_tag :course_description, params[:course_description], class: "span2", placeholder: "Course Description" %>
+      </ul>
+      <ul>
+      <%= text_field_tag :course_status, params[:course_status], class: "span2", placeholder: "Active or Inactive" %>
+      </ul>
+      
+      <button class= "btn" type="submit"><a>Search</a></button>
+      <button class= "btn"><%= link_to "View All Courses", courses_url %></button>
+      
+    </div>
+    
+    
+   <%end%>  
+
+    
+
+ <%end%>
+ 
+ 
+ 

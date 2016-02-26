@@ -1,0 +1,31 @@
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Course Number</th>
+        <th>Title</th>
+        <th>Instructor</th>
+        <th>Status</th>
+        <th>Enroll</th>
+        <% end %>
+      </tr>
+    </thead>
+  
+  <div class="course">
+    <h1 class="course-title"></h1>
+  
+
+    <% @course.each do |course| %>
+      
+      <tr>
+        <td><%= link_to(course.number,course , controller: 'courses' , action: 'show') %></td>
+        <td><%= course.title %></td>
+        <td><%= course.instructor %></td>
+        <td><%= course.status %></td>
+        <td><%= link_to "Request Enrollmentment", "http://gifsec.com/wp-content/uploads/GIF/2014/11/Fuck-you-Guardians-of-the-Galaxy-GIF.gif" %><td>
+        </tr>
+
+  <% end %>
+</div>
+
+</table> 

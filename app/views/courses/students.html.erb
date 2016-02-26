@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Students in <%= Course.find(params[:course_id]).title%></h1>
+
+<div class="container">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" ||  current_user.type == "Instructor" %>
+        <th>Student Name</th>
+      <% end %>
+      <th>Grade</th>
+      <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" ||  current_user.type == "Instructor"%>
+        <th>Grade Action</th>
+        <th>Drop Action</th>
+        <th colspan="4"></th>
+      <% else %>
+        <th colspan="3"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students_courses.each do |student_course| %>
+      <tr>
+        <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+          <td><%= Student.find(student_course.student_id).name %></td>
+        <% end %>
+        <td><%= student_course.grade %></td>
+        <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+          <% if student_course.grade.blank? %>
+            <td><%= link_to 'Post grade', "/student_courses/#{student_course.id}/edit"  %></td>
+          <% else %>
+            <td><%= link_to 'Edit grade', "/student_courses/#{student_course.id}/edit"  %></td>
+          <% end %>
+          <td><%= link_to 'Drop', "/courses/#{student_course.course_id}/students/#{student_course.student_id}/drop", data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+<% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+  <%= link_to 'Post a grade', new_grade_path %>
+<% end %>
