@@ -7,7 +7,7 @@
         <h4>Instructor</h4>
             <p><%= @course.instructor %></p>
 
- <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
+ <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
         <p><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.id , class: "btn btn-lg btn-primary")  %> <p>
         <p><%= link_to "Delete", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>
         <p><%= link_to "View enrolled students", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>    

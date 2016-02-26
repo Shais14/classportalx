@@ -24,4 +24,9 @@ class SuperAdminsController < UsersController
       redirect_to static_pages_home_url
     end
   end
+  
+  def user_params
+      params.require(:superadmin).permit(:name, :email, :password,
+                                   :password_confirmation)
+  end 
 end

@@ -1,5 +1,10 @@
-<h1>Viewing <%= @user.name %>'s profile</h1>
+<h1><%= @user.name %>'s profile</h1>
 <div>
 <p><b>Name: </b><%= @user.name %></p>
 <p><b>Email: </b><%= @user.email %></p>
+
+
+<p><%= link_to "Edit Profile", edit_user_path, class: "btn btn-lg btn-primary" %></p>
+
+
 </div>
