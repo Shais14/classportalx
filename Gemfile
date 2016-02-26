@@ -7,17 +7,17 @@ gem 'rails', '4.2.2'
 gem 'bcrypt-ruby', '~> 3.1.2' 
 
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end
 
 # gem 'postgres-pr'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.11'
+  gem 'sqlite3'
 end
 group :production do
-  gem 'postgres-pr'
+  gem 'pg'
 end
 
 # Use SCSS for stylesheets
