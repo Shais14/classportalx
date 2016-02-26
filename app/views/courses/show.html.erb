@@ -11,10 +11,30 @@
         <p><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.id , class: "btn btn-lg btn-primary")  %> <p>
         <p><%= link_to "Delete", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>
         <p><%= link_to "View enrolled students", id: @course.id, method: :delete, class: "btn btn-lg btn-primary", data: { confirm: "You sure?" }  %><p>    
-    <% end %>
+        <h3>Course Material</h3>
+        <% if @course.material.blank? %>
+        <p>No material added</p>
+        <%else%>
+        <p><%= @course.material %></p><br>
+        <%end%>
+        <%= form_for(@course) do |f| %>
+        <%= f.label :material %><br>
+        <%= f.text_field :material %><br><br>
+        <%= f.submit "Add", class: "btn btn-primary" %>
+        <%end%>
+        
+ <% end %>
 
 
 <% if current_user.type == "Student"%>
+
+    <h3>Course Material</h3>
+        <% if @course.material.blank? %>
+        <p>No material added</p>
+        <%else%>
+        <p><%= @course.material %></p><br>
+        <%end%>
+
 <% @student_course = StudentCourse.where("course_id = ?", @course.id).where("student_id = ?", current_user.id).first %>
 <% if @student_course.blank? || !@student_course.requested %>
  <p><%= link_to('Request Enrollment',  "#{@course.id}/requestEnrollment" , class: "btn btn-lg btn-primary", data: { confirm: "Are you sure you want to request an enrollment for this course?" }) %> </p>
@@ -25,4 +45,3 @@
 
 
 
-<!--data: { confirm: "Are you sure you want to request an enrollment for this course?" }-->
