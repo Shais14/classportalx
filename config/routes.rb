@@ -62,7 +62,7 @@ end
   get 'edit' => 'users#edit'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
-  delete 'logout'  => 'sessions#destroy'
+  get 'logout'  => 'sessions#destroy'
   
   get "/courses/:course_id/grades" => 'student_courses#grades'
   get "/courses/:course_id/requestEnrollment" => 'courses#requestEnrollment'

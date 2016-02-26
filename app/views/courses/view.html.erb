@@ -53,11 +53,20 @@
               <td>N/A</td>
             <% else %>
              <td>Not Enrolled</td>
-             <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
-            <% end %>
+             <% if course.status.casecmp("inactive").zero? %>
+               <td>Can't enroll, course inactive<td>
+             <% else %> 
+               <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+             <% end %>
+          <% end %>
           <% else %>
             <td>Not Enrolled</td>
-            <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+             <% if course.status.casecmp("inactive").zero? %>
+               <td>Can't enroll, course inactive<td>
+             <% else %> 
+          
+               <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+             <% end %>
           <% end %>
         <% end %>
       </tr>
