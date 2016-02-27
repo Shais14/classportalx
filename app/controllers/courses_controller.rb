@@ -30,8 +30,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-      @temp = params[:id]   
-     @course = Course.find(@temp)
+     @course = Course.find(params[:id])
   end
 
   # GET /courses/new
