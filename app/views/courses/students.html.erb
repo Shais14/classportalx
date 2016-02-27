@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
+<% course = Course.find(params[:course_id]) %>
+<h1>Students in <%= course.title%></h1>
 
-<h1>Students in <%= Course.find(params[:course_id]).title%></h1>
 
 <div class="container">
 <table class="table table-striped">
@@ -27,7 +28,7 @@
           <td><%= Student.find(student_course.student_id).name %></td>
         <% end %>
         <td><%= student_course.grade %></td>
-        <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+        <% if current_user.type == "Admin"|| current_user.type == "SuperAdmin" || (current_user.type == "Instructor" &&  course.instructor == current_user.name)%>
           <% if student_course.grade.blank? %>
             <td><%= link_to 'Post grade', "/student_courses/#{student_course.id}/edit"  %></td>
           <% else %>
@@ -42,6 +43,6 @@
 </div>
 
 <br>
-<% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
+<% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || (current_user.type == "Instructor" &&  course.instructor == current_user.name)%>
   <%= link_to 'Post a grade', new_grade_path %>
 <% end %>

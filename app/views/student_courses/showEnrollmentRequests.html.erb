@@ -18,6 +18,8 @@
 
   <tbody>
     <% @students_courses.each do |student_course| %>
+    <% course = Course.find(student_course.course_id) %>
+    <% if course.instructor == current_user.name %>
      <%= form_for(:student_course) do |f| %>
       <tr>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
@@ -30,6 +32,7 @@
         <% end %>
       </tr>
       <% end %>
+    <% end %>
     <% end %>
   </tbody>
 </table>
