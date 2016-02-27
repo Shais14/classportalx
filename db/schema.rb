@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226224613) do
+ActiveRecord::Schema.define(version: 20160226235401) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at",        null: false
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20160226224613) do
     t.string   "status"
     t.string   "material"
     t.boolean  "requestedInactive"
-
   end
 
   create_table "messages", force: :cascade do |t|
