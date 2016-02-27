@@ -1,4 +1,5 @@
 ClassPortal::Application.routes.draw do
+  resources :messages
   resources :user_histories
   resources :grades
   resources :admins
