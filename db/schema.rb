@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227031229) do
+ActiveRecord::Schema.define(version: 20160227091745) do
 
   create_table "courses", force: :cascade do |t|
     t.datetime "created_at",        null: false
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 20160227031229) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.string   "content"
     t.string   "sender_id"
     t.string   "receiver_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "student_courses", force: :cascade do |t|
