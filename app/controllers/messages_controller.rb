@@ -28,6 +28,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+      @message.update_attributes(:sender_id => current_user.id )        
         format.html { redirect_to @message, notice: 'Message was successfully created.' }
         format.json { render action: 'show', status: :created, location: @message }
       else
@@ -69,6 +70,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params[:message]
+          params.require(:message).permit(:content, :sender_id, :receiver_id) 
     end
 end
