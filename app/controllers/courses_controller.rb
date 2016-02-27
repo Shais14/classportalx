@@ -63,6 +63,10 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/edit
   # PATCH/PUT /courses/1.json
   def update
+    if @course.status.casecmp("inactive").zero?
+      @course.requestedInactive = false
+    end
+    
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to  viewCourse_path, notice: 'Course was successfully updated.' }
@@ -164,6 +168,19 @@ class CoursesController < ApplicationController
         redirect_to "/courses/#{params[:course_id]}/students/"
       end
     end
+  end
+  
+  def requestInactive
+    @course = Course.find(params[:course_id])
+    @course.requestedInactive = true
+    
+    if @course.save
+      flash[:success] = "The request was successfully made."
+    else
+      flash[:danger] = "An error occured while processing the request. Please try again"
+    end
+    
+    redirect_to "/courses"
   end
 
   private

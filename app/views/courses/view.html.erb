@@ -34,12 +34,17 @@
         <td><%= course.instructor %></td>
         <!--<td><%= course.start_date %></td>-->
         <!--<td><%= course.end_date %></td>-->
-        <td><%= course.status %></td>
+        <% if current_user.type == "Instructor" && current_user.name == course.instructor && course.status.casecmp("active").zero? && course.requestedInactive == false %>
+          <td><%= course.status %> <%= link_to('(Request Inactive)', "/courses/#{course.id}/requestInactive") %></td>
+        <% elsif (current_user.type == "SuperAdmin" || current_user.type == "Admin") && course.status.casecmp("active").zero? && course.requestedInactive == true %>
+          <td><%= course.status %> (Request received to make inactive) </td>
+        <% else %>
+          <td><%= course.status %></td>
+        <% end %>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" || current_user.type == "Instructor" %>
           <td><%= link_to('View students', "/courses/#{course.id}/students")  %></td>
         <% end %>
         <% if current_user.type == "Admin" || current_user.type == "SuperAdmin" %>
-        <td><%= link_to('View students', "/courses/#{course.id}/students")  %></td>
         <td><%= link_to('Edit', controller: 'courses', action:'edit', id: @course.ids)  %> </td>
         <td><%= link_to "Delete", course, method: :delete, data: { confirm: "You sure?" }  %></td>
          <% end %>
@@ -53,11 +58,20 @@
               <td>N/A</td>
             <% else %>
              <td>Not Enrolled</td>
-             <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
-            <% end %>
+             <% if course.status.casecmp("inactive").zero? %>
+               <td>Can't enroll, course inactive<td>
+             <% else %> 
+               <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+             <% end %>
+          <% end %>
           <% else %>
             <td>Not Enrolled</td>
-            <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+             <% if course.status.casecmp("inactive").zero? %>
+               <td>Can't enroll, course inactive<td>
+             <% else %> 
+          
+               <td><%= link_to 'Request enrollment', "courses/#{course.id}/requestEnrollment" %><td>
+             <% end %>
           <% end %>
         <% end %>
       </tr>
